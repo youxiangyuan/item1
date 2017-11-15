@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>婚戒列表</title>
+		<link href="../commons/css/common.css" type="text/css" rel="stylesheet"/>
+	   	<link href="../commons/css/reset.css" type="text/css" rel="stylesheet"/>
+	   	<link href="css/style3.css" type="text/css" rel="stylesheet"/>
+	  	<script src="js/jquery-1.12.3.js"></script>
+	 	<script src="js/jquery.cookie.js"></script>
+	  	<script src="js/fenlei.js"></script> 
+	  	<script src="js/list.js"></script>
+	  	 
+	  	 <!--生成json数据-->
+	  	 <script>
+	  	 	var arr1=["永恒之约","爱莲","柔媚","花冠", "遇见爱" ,"知心", "花漫", "优雅印记", "纯真", "甜美", "蜜之情",
+	  	 			"花冕","结网","绯之星","千千情结","丝缠","心缘","心之旅","爱的礼物","樱花恋","寻觅","碟恋","拥护",
+	  	 			"甜心" ,"唯一","时梭","挽香","典爱","Passion热情","享悦Ⅱ","永恒之约 ","拥暖Ⅱ ","动心Ⅱ ","北极光Ⅱ ",
+	  	 	"爱的皇冠 Ⅱ","倾心","天使之恋","炫动","花火","芳心","暖阳","心连","共舞","女皇","知心","花月见","神秘花园",
+	  	 	"掌心","眷宠","梦幻花园","蒙娜丽莎","花簇","心相守","三世之约","蜜语","雪舞","玲珑","巴黎之恋","彩映" ,"光荧",
+	  	 	"永恒之恋" ,"爱之韵" ,"爱冕" ,"三生三世" ,"比翼双飞","华丽誓言"]
+	  	 	var arr=[];
+	  	 	for(var i=0;i<arr1.length;i++){
+	  	 		var obj = {
+					id: i, 
+					name: arr1[i],
+					img: "images2/" + (i+1) + ".jpg", 
+					fuhao:"￥", 
+					jiage: parseInt(Math.random()*40000),
+					caizhi: parseInt(Math.random()*4)+1,
+					leibie: parseInt(Math.random()*4)+1,
+					pinlun :"评论",
+					pinlun1: parseInt(Math.random()*2000),
+					shouchu:"售出",
+					shouchu1: parseInt(Math.random()*15000),
+					
+				} 
+					arr.push(obj);  
+	  	 	}
+	  	 	/*console.log(JSON.stringify(arr));*/
+	  	 </script>
+		 		
+	<!--回到顶部-->
+	<script>
+		onload=function(){
+			window.onscroll=function(){
+				var scrollTop = document.documentElement.scrollTop || document.body.scrollTop; 
+				if(document.documentElement.scrollTop>960){
+					$("#boxx").show()
+				}
+				else{
+					$("#boxx").hide()
+				}
+			}
+			var boxx = document.getElementById("boxx");
+			boxx.onclick = function(){
+				document.documentElement.scrollTop = 0;
+			} 		
+		}		
+		
+	</script>
+	
+	<!--///-->
+	<script>
+		$(function(){
+			if($.cookie("nmb")){
+				$("#span1").html(JSON.parse($.cookie("nmb")))
+				$("#spo").html(JSON.parse($.cookie("nmb")))
+			}
+			if($.cookie("name")){
+				$("#limm").html(JSON.parse($.cookie("name")))
+				$("#limn").html("会员您好！");
+				$("#limb").html("退出登录");
+				
+			}
+		})
+	</script>
+	
+	</head> 
+	<body>
+		<!--top部分-->
+		<div id="top-wraper">
+			<div class="top">
+				<ul>
+					<li id="limm">欢迎进入钻石小鸟官网</li>
+					<li id="limn"><a href="#">登录</a></li>
+					<li id="limb"><a href="#">注册</a></li>
+				</ul>
+				<ul class="ul1">
+					<li class="li1">
+						<img src="images/header_box.png"  />
+						<a href="#">购物车</a>
+						<span id="span1" class="span2">0</span>
+						<span class="span1"><img src="images/icon_drop.png"</span>
+						<p>购物车中无商品</p>
+					</li>
+					
+					<li>
+						<a href="#">我的订单</a>
+					</li>
+					<li class="li2">
+						<a href="#">我的鸟巢</a>
+						<span class="span1"><img src="images/icon_drop.png"</span>
+						<ul class="ul33">
+							<li>订单查询</li>
+							<li>售后服务</li>
+							<li>积分换礼</li>
+						</ul>
+					</li> 
+					<li>
+						<a href="#">钻石课堂</a>
+					</li>
+					<li class="li3">
+						<a href="#">手机官网</a>
+						<ul class="ul4">
+							<li>
+								<img src="images/code_wechat.jpg"  />
+							</li>
+							
+						</ul>
+					</li>
+				</ul>
+				
+			</div>
+		</div>
+		
+		<!--header部分--> 
+		<div id="header-wraper">
+			<div class="header">
+				<h2>
+					<img src="images/33.png"  />
+				</h2>
+				<form id="form1">
+					<input class="input1" type="text" placeholder="戒托"/>
+					<a href="#">来店预约</a>
+					<img src="images/icon_ser.jpg" />
+				</form>	
+				
+			</div>	
+		</div>
+		<!--nav部分-->
+		<!--1-->
+		<div id="nav-wraper">
+			
+			<div class="nav">
+				
+				<ul class="ul1">
+					<li class="li1">
+						<a href="../index/index.html">首页</a>
+					</li>
+					<!---->
+					<li class="li2"> 
+						<a href="#">钻石</a>	
+						<div class="div1">
+							<div class="left1"	>
+								<span>
+									<h1><a href="#">钻石</a></h1>
+									<h2><a href="#">探索全部钻石</a></h2>
+									<h3><a href="#">30分裸钻</a></h3>
+									<h3><a href="#">50分裸钻</a></h3>
+									<h3><a href="#">70分裸钻</a></h3>
+									<h3><a href="#">克拉钻</a></h3>
+									<h3><a href="#">海淘钻石&nbsp;&nbsp;立省15%</a></h3>
+									<h3><a href="#">北极光钻石</a></h3>
+									<h3><a href="#">FireCushion钻石</a></h3>	
+								</sapn>
+								
+							</div>	
+							<div class="left2"	>
+								<span>
+									<h4><a href="#">圆形</a></h4>
+									<h4><a href="#">公主方</a></h4>
+									<h4><a href="#">祖母绿</a></h4>
+									<h4><a href="#">橄榄形</a></h4>
+									<h4><a href="#">椭圆形</a></h4>
+									<h4><a href="#">梨形</a></h4>
+									<h4><a href="#">心形</a></h4>	
+								</span>
+							</div>
+							<div class="left3"	>
+								<span>
+									<h4><a href="#">定制一款钻戒</a></h4>
+									<h4><a href="#">定制一款吊坠</a></h4>
+									<h4><a href="#">钻石4C知识</a></h4>
+									<h4><a href="#">钻石其他参数如何查看</a></h4>
+									<h4><a href="#">钻石证书知识</a></h4>
+									<h4><a href="#">甄选特惠裸钻专区</a></h4>
+									
+								</span>
+							</div>
+							<div class="left4"	>
+								<img src="images/ejdh1.jpg">
+							</div>
+							 
+						</div>
+					</li>
+					<!---->
+					<li class="li3">
+						<a href="#">婚戒</a>
+						<div class="div2">
+							<div class="left1"	>
+								<span>
+									<h1><a href="#">婚戒</a></h1>
+									<h2><a href="#">探索全部婚戒</a></h2>
+									<h3><a href="#">简约独钻</a></h3>
+									<h3><a href="#">奢华群镶</a></h3>
+									<h3><a href="#">克拉钻戒</a></h3>
+									<h3><a href="#">大气男戒</a></h3>
+									<h3><a href="#">纪念戒/花戒</a></h3>
+									<h3><a href="#">戒托款式</a></h3>
+									<h3><a href="#">人气热销</a></h3>	
+								</sapn>
+								
+							</div>	
+							<div class="left2"	>
+								<span>
+									<h4><a href="#">TRIMARK系列</a></h4>
+									<h4><a href="#">北极光系列</a></h4>
+									<h4><a href="#">LADY NEW YORK</a></h4>
+									<h4><a href="#">心心相印系列</a></h4>
+									<h4><a href="#">钟情蕾丝系列</a></h4>
+									<h4><a href="#">宠爱系列</a></h4>
+									<h4><a href="#">玲珑系列</a></h4>
+									<h4><a href="#">幸福三指环</a></h4>	
+								</span>
+							</div>
+							<div class="left3"	>
+								<span>
+									<h4><a href="#">如何测量尺寸</a></h4>
+									<h4><a href="#">如何挑选适合的戒指款式</a></h4>
+									<h4><a href="#">如何选购戒托材质</a></h4>
+									<h4><a href="#">匠心工艺</a></h4>			
+								</span>
+							</div>
+							<div class="left4"	>
+								<img src="images/ejdh2.jpg">
+							</div>
+							 
+						</div>
+						
+					</li>
+					<li>
+						<a href="#">对戒</a>
+					</li>
+					<li>
+						<a href="#">配饰</a> 
+					</li>
+					<li>
+						<a href="#">定制</a>
+					</li>
+					<li>
+						<a href="#">体验中心</a>
+					</li>
+				</ul>
+				
+				
+				<ul class="ul2">
+					<li>
+						<a href="#">商务加盟</a>
+					</li>
+					<li>
+						<a href="#">品牌故事</a>
+					</li>
+					<li>
+						<a href="#">鸟巢论坛</a>
+					</li>
+				</ul>
+			</div> 
+			
+		</div>
+		<!--banner图-->
+		<div id="banner-warper">
+			
+				<img src="images/list_pic_wed.jpg" />
+				<ul>
+					<li>首页</li>
+					<li><</li>
+					<li>钻戒</li>
+				</ul>
+		</div>
+		
+		<!---->
+		
+		<!--钻石分类-->
+		<div id="boxm">
+			<div class="boxm">
+				<ul class="ulm">
+					<li class="li1" >
+						<a href="#"><img src="images/left_category_add.jpg"/></a>
+						<a href="#">钻石</a>
+					</li>
+					<li>
+						<a href="#"><img src="images/left_category_low.jpg"/></a>
+						<a href="#">钻戒</a>
+					</li>
+					<li class="a1"><a href="#">铂金钻戒</a></li>
+					<li class="a1"><a href="#">30分钻戒</a></li>
+					<li class="a1"><a href="#">50分钻戒</a></li>
+					<li class="a1"><a href="#">50分钻戒</a></li>
+					<li class="a1"><a href="#">50分钻戒</a></li>
+					<li class="a1"><a href="#">70分钻戒</a></li>
+					<li class="a1"><a href="#">克拉钻戒</a></li>
+					<li>
+						<a href="#"><img src="images/left_category_add.jpg"/></a>
+						<a href="#">对戒</a>
+					</li>
+					<li>
+						<a href="#"><img src="images/left_category_add.jpg"/></a>
+						<a href="#">配饰</a>
+					</li>
+				</ul>
+				
+				
+				
+				<!--选择-->
+				<div class="bo1">
+					<ul class="ulA">
+						<li class="li2" >价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格</li>
+						<li><a href="#"><img src="images/page_line.png"/></a></li>
+						
+						<li class="li1"><a href="#">不限</a></li>
+						<li><a href="#">1000-3000</a></li>
+						<li><a href="#">3000-6000</a></li>
+						<li><a href="#">6000-10000</a></li>
+						<li><a href="#">10000-20000</a></li>
+						<li><a href="#">20000以上</a></li>
+					</ul>
+					
+					
+					<ul class="ulB">
+						<li class="li2" >钻&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;重</li>
+						<li><a href="#"><img src="images/page_line.png"/></a></li>
+						
+						<li class="li1"><a href="#">不限</a></li>
+						<li><a href="#">30分以下</a></li>
+						<li><a href="#">30-39分</a></li>
+						<li><a href="#">40-49分</a></li>
+						<li><a href="#">50-59分</a></li>
+						<li><a href="#">60-69分</a></li>
+					</ul>
+					
+					<ul class="ulC">
+						<li class="li2" >材&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;质</li>
+						<li><a href="#"><img src="images/page_line.png"/></a></li>
+						<li class="li1"><a href="#">不限</a></li>
+						<li><a href="#">铂900</a></li>
+						<li><a href="#">18K金</a></li>
+						<li><a href="#">铂950-黄18K金</a></li>
+						<li><a href="#">铂950-白18K金</a></li>
+					</ul>
+					
+					<ul class="ulD">
+						<li class="li2" >类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</li>
+						<li><a href="#"><img src="images/page_line.png"/></a></li>
+						<li class="li1"><a href="#">不限</a></li>
+						<li><a href="#">精工婚戒</a></li>
+						<li><a href="#">婚戒</a></li>
+						<li><a href="#">花戒</a></li>
+						<li><a href="#">排戒</a></li>
+					</ul>
+					
+					<ul class="ulE">
+						<li class="li2" >戒臂装饰</li>
+						<li><a href="#"><img src="images/page_line.png"/></a></li>
+						<li class="li1"><a href="#">不限</a></li>
+						<li><a href="#">镂空</a></li>
+						<li><a href="#">无装饰</a></li>
+						<li><a href="#">小钻</a></li>
+						
+					</ul>
+					
+					<ul class="ulF">
+						<li class="li2" > 镶嵌爪形</li>
+						<li><a href="#"><img src="images/page_line.png"/></a></li>
+						<li class="li1"><a href="#">不限</a></li>
+						<li><a href="#">四爪</a></li>
+						<li><a href="#">六爪</a></li>
+						<li><a href="#">其他爪</a></li>
+					</ul>
+					
+					<ul class="ulG">
+						<li class="li2" >主钻形状</li>
+						<li><a href="#"><img src="images/page_line.png"/></a></li>
+						<li class="li1"><a href="#">不限</a></li>
+						<li><a href="#">圆形</a></li>
+						<li><a href="#">异形</a></li>
+						
+					</ul>
+					
+					<h3 id="h3">
+						<a href="#">收起高级搜索</a>
+					</h3>
+				</div>
+				  
+				  <ul id="ulH">
+					  	<li class="li1"><a href="#">现货速发</a></li>
+					  	<li class="li3"><a href="#"><img src="images/page_line.png"/></a></li>
+					  	<li class="li2"><a href="#">优选定制</a></li>	
+				  </ul>
+				  
+				  
+				  <!--排序-->
+				  <div id="boxk">
+				  	<div class="paixu">
+				  		<p>销量</p>
+				  		<p>评价</p>		
+				  	</div>
+				  </div> 
+				  
+				  <!--商品列表-->
+				  <div class="div01">
+				  	<ul id="ult">
+				  		<!--<li >
+				  			<img class="img1"  src="images/31481_388!big.jpg" />	
+				  			<h4>拥暖</h4>
+				  			<h4>￥10640</h4>
+				  			<h4>
+				  				<span>售出</span>
+				  				<span>5589</span>
+				  				<span>评论</span>
+				  				<a href="#">586</a>
+				  			</h4>
+				  		</li>
+				  		
+				  		
+				  		<li >
+				  			<img class="img1"  src="images/33208_388!big.jpg" />	
+				  			<h4>永恒之约</h4>
+				  			<h4>￥9140</h4>
+				  			<h4>
+				  				<span>售出</span>
+				  				<span>10612</span>
+				  				<span>评论</span>
+				  				<a href="#">826</a>
+				  			</h4>
+				  		</li>
+				  		
+				  		<li >
+				  			<img class="img1"  src="images/23301_388!big.jpg" />	
+				  			<h4>倾心</h4>
+				  			<h4>￥8900</h4>
+				  			<h4>
+				  				<span>售出</span>
+				  				<span>5174</span>
+				  				<span>评论</span>
+				  				<a href="#">243</a>
+				  			</h4>
+				  		</li>
+				  		
+				  	
+				  		<li >
+				  			<img class="img1"  src="images/26764_388!big.jpg" />	
+				  			<h4>北极光月光女王</h4>
+				  			<h4>￥32500</h4>
+				  			<h4>
+				  				<span>售出</span>
+				  				<span>2454</span>
+				  				<span>评论</span>
+				  				<a href="#">540</a>
+				  			</h4>
+				  		</li>
+				  		
+				  		<li >
+				  			<img class="img1"  src="images/24973_388!big.jpg" />	
+				  			<h4>Energy能量</h4>
+				  			<h4>￥23600</h4>
+				  			<h4>
+				  				<span>售出</span>
+				  				<span>1029</span>
+				  				<span>评论</span>
+				  				<a href="#">467</a>
+				  			</h4>
+				  		</li>
+				  		
+				  		<li >
+				  			<img class="img1"  src="images/22806_388!big.jpg" />	
+				  			<h4>天使之恋</h4>
+				  			<h4>￥15300</h4>
+				  			<h4>
+				  				<span>售出</span>
+				  				<span>3801</span>
+				  				<span>评论</span>
+				  				<a href="#">252</a>
+				  			</h4>
+				  		</li>
+				  		
+				  	
+				  		<li >
+				  			<img class="img1"  src="images/26767_388!big.jpg" />	
+				  			<h4>北极光森林女王</h4>
+				  			<h4>￥29600</h4>
+				  			<h4>
+				  				<span>售出</span>
+				  				<span>695</span>
+				  				<span>评论</span>
+				  				<a href="#">190</a>
+				  			</h4>
+				  		</li>
+				  		
+				  		<li >
+				  			<img class="img1"  src="images/32331_388!big.jpg" />	
+				  			<h4>享悦</h4>
+				  			<h4>￥9640</h4>
+				  			<h4>
+				  				<span>售出</span>
+				  				<span>4162</span> 
+				  				<span>评论</span>
+				  				<a href="#">507</a>
+				  			</h4>
+				  		</li>
+				  		
+				  		<li >
+				  			<img class="img1"  src="images/23304_388!big.jpg" />	
+				  			<h4>炫动</h4>
+				  			<h4>￥8810</h4>
+				  			<h4>
+				  				<span>售出</span>
+				  				<span>4891</span>
+				  				<span>评论</span>
+				  				<a href="#">230</a>
+				  			</h4>
+				  		</li>
+				  		
+				  		
+				  	
+				  		<li >
+				  			<img class="img1"  src="images/18464_388!big.jpg" />	
+				  			<h4>丝缠</h4>
+				  			<h4>￥2800</h4>
+				  			<h4>
+				  				<span>售出</span>
+				  				<span>4144</span>
+				  				<span>评论</span>
+				  				<a href="#">92</a>
+				  			</h4>
+				  		</li>
+				  		
+				  		<li >
+				  			<img class="img1"  src="images/22808_388!big.jpg" />	
+				  			<h4>典爱</h4>
+				  			<h4>￥10560</h4>
+				  			<h4>
+				  				<span>售出</span>
+				  				<span>4950</span> 
+				  				<span>评论</span>
+				  				<a href="#">164</a>
+				  			</h4>
+				  		</li>
+				  		  
+				  		<li >
+				  			<img class="img1"  src="images/5738_388!big.jpg" />	
+				  			<h4>花冠(女戒)</h4>
+				  			<h4>￥1899</h4>
+				  			<h4>
+				  				<span>售出</span>
+				  				<span>4338</span>
+				  				<span>评论</span> 
+				  				<a href="#">139</a>
+				  			</h4>
+				  		</li>
+				  		  
+				  	--> 
+				  		
+				  		
+				  	</ul>
+				  </div>
+				
+				
+				
+				
+				
+				
+				
+				
+				<ul class="uln">
+					<li class="li-1">热卖推荐</li>
+					<li class="li-2"><img src="images/16015_399!middle.jpg"/></li>
+					<li class="li-3">爱的礼物</li>
+					<li class="li-4">
+						<span class="span1">￥5399</span>
+						<span class="span2">售出</span>
+						<span class="span3">367</span>
+					</li>
+				</ul>
+				
+				<ul class="ulb">
+					<li class="li-2"><img src="images/26764_399!big.jpg"/></li>
+					<li class="li-3">爱的礼物</li>
+					<li class="li-4">
+						<span class="span1">￥5399</span>
+						<span class="span2">售出</span>
+						<span class="span3">367</span>
+					</li> 
+				</ul>
+				<h2>
+					<img src="images/6484c54a7462b0e1a96108cc654a7d98.jpg" />
+				</h2>
+				<h2>
+					<img src="images/887a59cca10d51d19213018cb5ef7355.jpg" />
+				</h2>
+				<h2>
+					<img src="images/887a59cca10d51d19213018cb5ef7355.jpg" />
+				</h2>
+			</div>
+		</div>
+		
+		
+		
+		<!--固定-->
+		<div id="boxd">
+			<h1><img src="images/img.png"/></h1>
+			<ul> 
+				<li><img src="images/1.gif"/></li>
+				<li id="lo"><img src="images/2.jpg"/><span id="spo">0</span></li>
+				<li><img src="images/3.jpg"/></li>
+				<li><img src="images/4.jpg"/></li>
+				<li class="lig">
+					<img src="images/5.jpg"/>
+					<h3><img src="images/code.jpg"/></h3>
+				</li>
+			</ul>
+		</div> 
+		
+		<!--回到顶部-->
+		<div id="boxx">
+			<img src="images/s_totop_01.png" />
+		</div>
+		
+	</body>
+</html>

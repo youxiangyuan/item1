@@ -1,0 +1,120 @@
+#main-warper{
+	height:601px;
+	position:relative;
+}
+#main-warper img{
+	height:601px;
+	position:relative;
+	left:50%;
+	margin-left: -960px;
+}
+#main-warper .main{
+	width:1182px;
+	height:601px;
+	margin:0 auto;
+}
+#main-warper .main ul{
+	width:366px;
+	position:absolute;
+	right:172px;
+	top:94px;
+}
+#main-warper .main ul .li2{
+	float:right;
+}
+#main-warper .main ul .li1{
+	font-size:18px;
+	margin-right:190px;
+	float:left;
+}
+#main-warper .main ul .li2 a{
+	font-size:12px;
+}
+#main-warper .main ul .li2:hover a{
+	color:#ff8a81;
+}
+#main-warper .main form{
+	width:366px;
+	position:absolute;
+	right:172px;
+	top:127px;
+	background:#fcede9;
+	height:376px;
+}
+#main-warper .main form .input1,.input2{
+	height:35px;
+	width:284px;
+	margin-left:40px;
+	border:none;
+	background:#fff;
+	padding-left:12px;
+	line-height:35px;
+	color:#b0b0b0;
+}
+#main-warper .main form .input1{
+	margin-top:44px;
+}
+#main-warper .main form .input2,.input3,.input4{
+	margin-top:20px;
+}
+#main-warper .main form .input3{
+	border:none;
+	width:16px;
+	height:16px;
+	background:#fff;
+	margin-left:40px;
+	
+}
+#main-warper .main form  a{
+	font-size:12px;
+	color:#505050;
+	line-height:16px;
+	margin-left:163px;
+	
+}
+#main-warper .main form  a:hover{
+	color:#ff8a81;
+}
+#main-warper .main span{
+	font-size:12px;
+	color:#505050;
+	line-height:16px;
+	
+}
+#main-warper .main form #bnt{
+	height:35px;
+	width:296px;
+	margin-top:20px;
+	background:#ff8a81;
+	line-height:35px;
+	margin-left:40px;
+	text-align: center;
+	border:none;
+	color:#fff;
+}
+#main-warper .main  .ul1{
+	height:16px;
+	line-height:16px;
+	font-size: 12px;
+	position:absolute;
+	top:388px;
+	right:42px;
+}
+#main-warper .main  .ul2{
+	position:absolute;
+	top:408px;
+	right:93px;
+	margin-top:22px;
+}
+#main-warper .main  .ul2 li{
+	width:28px;
+	height:28px;
+	float:left;
+	border-radius: 50%;
+	background:#fff;
+	margin-right:33px;
+}
+
+
+
+  

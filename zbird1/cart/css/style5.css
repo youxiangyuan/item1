@@ -1,0 +1,137 @@
+
+
+#header-wraper .header h3{
+	float:right;
+}
+/*、、、、、*/
+#div1 {
+	height:68px;
+}
+#div1 .div1{
+	height:68px;
+	width:1182px;
+	margin:0 auto;
+}
+
+/*///////*/
+#div2{
+	height:817px;
+	
+	
+}
+#div2 .ul1{
+	width:1182px;
+	height:24px;
+	margin:0 auto;
+	border-bottom: 1px solid #000;
+}
+#div2 .ul1 li{
+	float:left;
+	font-size:12px;	
+}
+#div2 .ul1 .li1{
+	margin-left:84px;
+}
+#div2 .ul1 .li2{
+	margin-left:278px;
+}
+#div2 .ul1 .li3{
+	margin-left:118px;
+}
+#div2 .ul1 .li4{
+	margin-left:93px;
+}
+#div2 .ul1 .li5{
+	margin-left:98px;
+}
+#div2 .ul1 .li6{
+	margin-left:134px;
+}
+#div2 .ul1 .li7{
+	margin-left:97px;
+}
+
+#div2 .ul2{
+	width:1182px;
+	margin:0 auto;
+	border-bottom: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	margin-top:3px;
+	font-size:12px;
+	
+}
+#div2 .ul2 li{
+	height:98px;
+	line-height: 98px;
+}
+#div2 .ul2 li .img{
+	float:left;
+	width: 40px;
+	 height: 30px;
+	 margin-top:35px;
+}
+#div2 .ul2 li input{
+	float:left;
+	margin-top: 42px;
+}
+#div2 .ul2 li span{
+	display: block;
+	float:left;
+}
+#div2 .ul2 li .num{ 
+	width: 30px;
+	text-align: center;
+}
+
+#div2 .ul2 li .name{
+	margin-left:5px;
+	width:80px;	
+	text-align: center;
+}
+
+
+#div2 .ul2 li .span1{
+	margin-left:470px
+}
+#div2 .ul2 li .price{
+	margin-left:95px
+}
+#div2 .ul2 li .add{
+	margin-left:113px
+}
+#div2 .ul2 li .del{
+	margin-left:110px
+}
+#div2 .ul3{
+	width:1182px;
+	height:108px;
+	margin:0 auto;
+	line-height: 108px;
+	font-size:14px;	
+}
+#div2 .ul3 li{
+	float:left;
+}
+#div2 .ul3 .lia{
+	margin-right: 820px;
+}
+#div2 .ul3 .lia .a1{
+	margin-right: 30px;
+}
+#div2 .ul3 .lib{
+	margin-right:20px;
+}
+#div2 .box{
+	height:24px;
+	width:1180px;
+	margin:0 auto;
+}
+#div2 p{  
+	height:24px;
+	line-height:24px;
+	text-align: center;
+	background-color: #ff8a81;
+	color:#fff;
+	width:130px;
+	float: right;
+}

@@ -1,0 +1,126 @@
+#main-warper{
+	height:601px;
+	position:relative;
+}
+#main-warper img{
+	height:601px;
+	position:relative;
+	left:50%;
+	margin-left: -960px;
+}
+#main-warper .main{
+	width:1182px;
+	height:601px;
+	margin:0 auto;
+}
+#main-warper .main ul{
+	width:366px;
+	position:absolute;
+	right:172px;
+	top:94px;
+}
+#main-warper .main ul li{
+	float:left;
+}
+#main-warper .main ul .li1{
+	font-size:18px;
+	margin-right:190px;
+}
+#main-warper .main ul .li2 a{
+	font-size:12px;
+	color:#666;	
+	margin-right:12px;
+}
+#main-warper .main ul .li3 a{
+	font-size:12px;
+	color:#ff8a81;
+}
+#main-warper .main form{
+	width:366px;
+	position:absolute;
+	right:172px;
+	top:127px;
+	background:#fcede9;
+	height:426px;
+}
+#main-warper .main form input{
+	
+}
+#main-warper .main form .input2,.input3,.input4{
+	height:35px;
+	width:284px;
+	margin-left:40px;
+	border:none;
+	background:#fff;
+	padding-left:12px;
+	line-height:35px;
+	color:#b0b0b0;
+}
+#main-warper .main form .input2{
+	margin-top:45px;
+}
+
+#main-warper .main form .input1{
+	width:188px;
+	height:35px;
+	margin-left:40px;
+	border:none;
+	padding-left: 12px;
+	color:#b0b0b0;
+}
+#main-warper .main form  #bto{
+	width:60px;
+	height:35px;
+	line-height:35px;
+	margin-left:20px;
+}
+#main-warper .main form .input5{
+	border:none;
+	width:16px;
+	height:16px;
+	background:#fff;
+	margin-left:40px;
+}
+
+
+#main-warper .main form a{
+	font-size:12px;
+	color:#505050;
+	line-height:16px;
+	
+}
+#main-warper .main form #bot{
+	height:35px;
+	width:296px;
+	margin-top:20px;
+	background:#ff8a81;
+	line-height:35px;
+	margin-left:40px;
+	text-align: center;
+	border:none;
+	color:#fff;
+}
+#main-warper .main form span{
+	display: block;
+	margin-left:40px;
+	font-size:12px;
+	margin-top:0px;
+	height:20px; 
+	line-height:20px;
+	color:#ff8a81;
+}
+#Txtidcode{
+	height:21px;
+	border:none;
+	width:80px;
+	margin-left:40px;
+	padding-left:10px;
+	
+}
+
+#main-warper .main form #idcode{
+	display: inline;
+	margin-left:12px;
+	
+}
+

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>钻石小鸟官网注册页</title>
+			<link href="../commons/css/common.css" type="text/css" rel="stylesheet"/>
+		   	<link href="../commons/css/reset.css" type="text/css" rel="stylesheet"/>
+		   	<link href="css/style1.css" type="text/css" rel="stylesheet"/>
+		   	<link href="css/jquery.idcode.css" type="text/css" rel="stylesheet">
+		
+		<script src="js/ajax.js"></script>
+		<script>
+			onload = function(){ 
+				var aInput = document.getElementsByTagName("input");
+				var bto = document.getElementById("bto");
+				var bot = document.getElementById("bot");
+				var aSpan= document.getElementsByTagName("span");
+				var Txtidcode= document.getElementById("Txtidcode");
+				
+				
+				var flag1 = false;
+				var flag2 = false;
+				var flag3 = false;
+				var flag4 = false;
+				//手机号不能为空
+				aInput[0].onblur = function(){
+					//console.log("1")
+					var phone = aInput[0].value;
+					if(aInput[0].value == ""){
+						aSpan[3].innerHTML = "请输入手机号";
+						flag1 = false;
+					}
+					else {
+						aSpan[3].innerHTML = "  ";
+					}  
+				}
+				
+				//监测手机号
+				aInput[0].onkeyup = function(){
+					var phone = aInput[0].value;
+					var reg = /^((13[0-9])|(14(5|7))|(15([0-3]|[5-9]))|(18[05-9])|(17[37-9]))\d{8}$/;
+					if(reg.test(phone)){
+						aSpan[3].innerHTML="手机号合法";
+						flag1= true;
+					}
+					else{
+						aSpan[3].innerHTML="手机号不合法";
+						flag1 = false;
+					}
+				}
+				 
+				 
+				
+				//密码不能为空
+				aInput[1].onblur= function(){
+					//console.log("2")
+					var password = aInput[1].value;
+					if(aInput[1].value == ""){
+						aSpan[4].innerHTML = "6-20位大小写字母，数字及'-'、'_'组合";
+						flag2 = false;
+					}
+					else {
+						aSpan[4].innerHTML = "  ";
+					}
+				} 
+				//监测密码	
+				aInput[1].onkeyup = function(){
+					var password = aInput[1].value;
+					var reg = /^[0-9a-zA-Z-_]{6,20}$/;
+					if(reg.test(password)){
+						aSpan[4].innerHTML="密码合法";
+						flag2 = true;
+					}
+					else{
+						aSpan[4].innerHTML="密码不合法";
+						flag2 = false;
+					}
+				}
+				
+				
+				//再次输入密码不能为空
+				aInput[2].onblur = function(){
+					//console.log("3")
+					var password = aInput[2].value;
+					if(aInput[2].value == ""){
+						aSpan[5].innerHTML = "请再次输入密码";
+						flag3 = false;
+					}
+					else {
+						aSpan[5].innerHTML = "  ";
+					}
+				}
+				//监测重复密码	
+				aInput[2].onkeyup = function(){
+					var password = aInput[2].value;
+					if(aInput[2].value == aInput[1].value ){
+						aSpan[5].innerHTML = "重复密码输入成功";
+						flag3 = true;
+					}
+					else{
+						aSpan[5].innerHTML = "请再次输入密码";	
+						flag3 = false;
+					}
+				}
+				
+				//验证码不能为空
+					aInput[3].onblur = function(){
+						//console.log("4")
+					var yzm = aInput[3].value;
+					if(aInput[3].value == ""){
+						aSpan[6].innerHTML = "请输入验证码";
+						flag4 = false;
+					}
+					else {
+						aSpan[6].innerHTML = "  ";
+					}
+				}
+				//监测验证码
+				bto.onclick=function(){
+					var arr=[0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+					var str = ""
+						for(var i = 0;i<5;i++){
+							str +=  arr[parseInt(Math.random()*36)];
+						}
+					bto.value = str; 
+				}
+				aInput[3].onkeyup=function(){
+					if(aInput[3].value == bto.value){
+						aSpan[6].innerHTML="验证码正确";	
+						flag4 = true;  
+					} 
+					else{
+						aSpan[6].innerHTML="验证码不正确";	
+						flag4 = false;
+					}
+				}
+				
+				//
+				
+				
+				
+				//注册
+				bot.onclick = function(e){
+						e.preventDefault();	
+					var username = aInput[0].value;
+		        	var pwd = aInput[1].value;
+		        	 //ajax
+		        	var xhr = createXHR();
+		        	xhr.open("post", "http://127.0.0.1/zbird/register/php/register.php", true);
+		        	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		        	xhr.send("username="+ username + "&pwd="+ pwd );
+		        	 xhr.onreadystatechange = function (){
+		        	 	 if (xhr.readyState==4 && xhr.status==200) {
+                			//console.log(xhr.responseText);
+                			var obj = JSON.parse(xhr.responseText);
+
+
+               			 if (obj.status == 1) {
+		                    //注册成功
+		                    //跳到登录页
+                  		  location.href = "../login/login.html";
+                		}
+               			else if (obj.status == 0) {
+                   			 alert("用户名已经存在");
+                		}
+               			 else {
+                    		alert("注册失败！");
+                		}
+		        	 }
+		        	 
+				}
+				
+			}	
+		 
+		}
+		</script>
+	</head>
+	<body>
+		<!--top部分-->
+		<div id="top-wraper">
+			<div class="top">
+				<ul>
+					<li>欢迎进入钻石小鸟官网</li>
+					<li><a href="../login/login.html">登录</a></li>
+					<li><a href="#">注册</a></li>
+				</ul>
+				<ul class="ul1">
+					<li class="li1">
+						<img src="images/header_box.png"  />
+						<a href="#">购物车</a>
+						<span class="span2">0</span>
+						<span class="span1"><img src="images/icon_drop.png"</span>
+						<p>购物车中无商品</p>
+					</li>
+					
+					<li>
+						<a href="#">我的订单</a>
+					</li>
+					<li class="li2">
+						<a href="#">我的鸟巢</a>
+						<span class="span1"><img src="images/icon_drop.png"</span>
+						<ul class="ul33">
+							<li>订单查询</li>
+							<li>售后服务</li>
+							<li>积分换礼</li>
+						</ul>
+					</li> 
+					<li>
+						<a href="#">钻石课堂</a>
+					</li>
+					<li class="li3">
+						<a href="#">手机官网</a>
+						<ul class="ul4">
+							<li>
+								<img src="images/code_wechat.jpg"  />
+							</li>
+							
+						</ul>
+					</li>
+				</ul>
+				
+			</div>
+		</div>
+		
+		
+		
+		<!--header部分--> 
+		<div id="header-wraper">
+			<div class="header">
+				<h2>
+					<img src="images/33.png"  />
+				</h2>
+				<!--<form id="form1">
+					<input class="input1" type="text" placeholder="戒托"/>
+					<a href="#">来店预约</a>
+					<img src="images/icon_ser.jpg" />
+				</form>	-->
+				
+			</div>	
+		</div>
+		
+		
+		<!--main部分-->
+		<div id="main-warper">
+			<img src="images/auth_bg_new.jpg" />
+			<div class="main">
+				<ul>
+					<li class="li1">欢迎注册</li>
+					<li class="li2"><a href="#">已有账号</a></li>
+					<li class="li3"><a href="../login/login.html">请登录</a></li> 
+				</ul>
+				<form>
+					<input type="text" placeholder="请输入手机号" class="input2"/>
+					<br />
+					<span ><!--输入11位手机号--></span>
+					<input type="password" placeholder="6-20位大小写字母，数字及'-'、'_'组合"  class="input3"/>
+					<br />
+					<span ><!--6-20位大小写字母，数字及'-'、'_'组合--></span>
+					<input type="password" placeholder="请再次输入密码"  class="input4"/>
+					<br />
+					<span ><!--请输入您的重复密码--></span>
+					<input type="text" class="input1" placeholder="5位数验证码"/> 
+					<input type="button" id="bto" value="3Q886"/>
+					<br />
+					<span ><!--请输入验证码--></span>
+					<input type="text" id ="Txtidcode" placeholder="验证码"> <span id="idcode"></span>
+					<!--<input type="button" id="butn" value="提交">-->
+					<input type="checkbox" checked="checked" class="input5"/><a href="#">已阅读并同意</a><a href="#">《钻石小鸟用户协议》</a>
+					<br />
+					
+					<button id="bot">注册</button>
+				</form>  
+			</div>				
+		</div>
+		
+		
+		<!--尾部-->
+		<div id="bottom-wraper">
+			<div class="bottom">
+				<ul class="u1">
+					<li class="li6">
+						<a href="#">全国免费配送</a>
+					</li>
+					<li>
+						<a href="#">商品货到付款</a>
+					</li>
+					<li>
+						<a href="#">钻石以小换大</a>
+					</li>
+					<li>
+						<a href="#">钻石一钻双证</a>
+					</li>
+					<li>
+						<a href="#">15天免费退换</a>
+					</li>
+					<li class="li1">
+						<a href="#">商品终生退换</a>
+					</li>
+				</ul>
+				
+				<ul class="u2">
+					<li class="lia"><img src="images/logo1.jpg"/></li>
+					<li class="lio">
+						<dl>
+							<dh>关于我们</dh>
+							<dd><a href="#">品牌简介</a></dd>
+							<dd><a href="#">市场合作</a></dd>
+							<dd><a href="#">联系我们</a></dd>
+							<dd><a href="#">商务加盟</a></dd>
+						</dl>
+					</li>
+					<li class="lio">
+						<dl>
+							<dh>关于我们</dh>
+							<dd><a href="#">品牌简介</a></dd>
+							<dd><a href="#">市场合作</a></dd>
+							<dd><a href="#">联系我们</a></dd>
+							<dd><a href="#">商务加盟</a></dd>
+						</dl>
+					</li>
+					<li class="lio">
+						<dl>
+							<dh>关于我们</dh>
+							<dd><a href="#">品牌简介</a></dd>
+							<dd><a href="#">市场合作</a></dd>
+							<dd><a href="#">联系我们</a></dd>
+							<dd><a href="#">商务加盟</a></dd>
+						</dl>
+					</li>
+					<li class="lio">
+						<dl>
+							<dh>关于我们</dh>
+							<dd><a href="#">品牌简介</a></dd>
+							<dd><a href="#">市场合作</a></dd>
+							<dd><a href="#">联系我们</a></dd>
+							<dd><a href="#">商务加盟</a></dd>
+						</dl>
+					</li>
+					<li class="lio">
+						<dl>
+							<dh>关于我们</dh>
+							<dd><a href="#">品牌简介</a></dd>
+							<dd><a href="#">市场合作</a></dd>
+							<dd><a href="#">联系我们</a></dd>
+							<dd><a href="#">商务加盟</a></dd>
+						</dl>
+					</li>
+					<li class="lii"><img src="images/web_code.jpg"/></li>
+				</ul>
+				
+				<div class="boxa">
+					<div class="boxb">
+						<ul class="ulc">
+							<li class="li1">400-880-0051</li>
+							<li>咨询时间:09:00-21:00</li>
+						</ul>
+						<ul class="uld">
+							<li>进店有礼&nbsp;&nbsp;甜蜜不停</li>
+						</ul>
+					</div>
+				</div>
+				
+				
+				<ul class="ulf">
+					<li><a href="#">网站地图</a></li>
+					<li><a href="#">网站地图</a></li>
+					<li><a href="#">网站地图</a></li>
+					<li>沪ICP备08011593号</li>
+					<li class="li1">Copyright &copy 2002-2007 www.zbird 钻石小鸟	 All Right Reserved</li>
+				</ul>
+				<h6>上海铂利德钻石有限公司&nbsp;&nbsp;021-26011188</h6>
+				
+				<ul class="ulg">
+					<li><a href="#">南湖国旅</a></li>
+					<li><a href="#">可可礼物</a></li>
+					<li><a href="#">卷皮网</a></li>
+					<li><a href="#">加盟网</a></li>
+					<li><a href="#">京东优评</a></li>
+					<li><a href="#">免费发布信息网</a></li>
+					<li><a href="#">白银网</a></li>
+					<li><a href="#">黄金网</a></li>
+					<li><a href="#">返利网</a></li>
+					<li><a href="#">生日礼物</a></li>
+					<li><a href="#">深圳地图</a></li>
+					<li><a href="#">黑光网</a></li>
+					<li class="li2"><a href="#">优惠劵</a></li>	
+				</ul>
+				
+				<ul class="ulh">
+					<li><img src="images/fot_certi.gif"/></li>
+					<li><img src="images/fot_certi_02.jpg"/></li>
+					<li><img src="images/fot_certi_03.jpg"/></li>
+					<li><img src="images/fot_certi_04.jpg"/></li>
+					<li><img src="images/picp_bg.png"/></li>
+				</ul>
+			</div>
+		</div>
+		
+		
+		<!--固定-->
+		<div id="boxd">
+			<h1><img src="images/img.png"/></h1>
+			<ul>
+				<li><img src="images/1.gif"/></li>
+				<li><img src="images/2.jpg"/></li>
+				<li><img src="images/3.jpg"/></li>
+				<li><img src="images/4.jpg"/></li>
+				<li class="lig">
+					<img src="images/5.jpg"/>
+					<h3><img src="images/code.jpg"/></h3>
+				</li>
+			</ul>
+		</div>
+		
+		
+	<script src="js/jquery-1.12.3.min.js"></script>
+	<!--//引用idcode插件-->
+	<script src="js/jquery.idcode.js"></script>
+	
+	<script>
+	    
+	    $.idcode.setCode();   //加载生成验证码方法
+	    
+	    $("#Txtidcode").change(function(){
+	    	
+	        var IsBy = $.idcode.validateCode();  //调用返回值，返回值结果为true或者false
+	       	
+	        if(IsBy){
+	            alert("验证码输入正确")
+	        }else {
+	            alert("请重新输入")
+	        }
+	    }) 
+	    
+	</script>
+	</body>
+</html>

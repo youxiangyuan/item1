@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>钻石小鸟官网首页</title>
+			<link href="../commons/css/common.css" type="text/css" rel="stylesheet"/>
+	   		<link href="../commons/css/reset.css" type="text/css" rel="stylesheet"/>
+	   		<link href="css/style.css" type="text/css" rel="stylesheet"/>
+			<script src="js/jquery-1.12.3.js"></script>
+			<script src="js/jquery.cookie.js"></script>
+			<script src="js/index1.js"></script>
+		<!--banner图轮播-->
+		<script> 
+			$(function(){
+				//ajax获取数据
+				$.get("lunbo.json", function(responseData){
+					//console.log(responseData); 
+					var arr = responseData.data;
+					
+					//遍历arr，动态创建节点
+					for (var i=0; i<arr.length; i++) {
+						var obj = arr[i];
+						$("<li><img src="+ obj.img +" ></li>").appendTo("#list1");
+						var li = $("<li></li>").appendTo("#list2");
+						if (i==0) {
+							li.addClass("active");
+						}
+					}  
+					 
+					//轮播
+					lunbo(); 
+				})    
+				  
+				function lunbo(){
+					var _ul1 = $("#list1");
+					var _ul2 = $("#list2");
+					var _li1 = $("#list1 li");
+					var _li2 = $("#list2 li");
+					
+					//初始化显示第一张图
+					_li1.eq(0).show().siblings().hide();
+					
+					//图片总数量
+					var size = $("#list1 li").size(); //4
+					
+					//自动轮播
+					var i = 0; //记录图片下标
+					var timer = setInterval(function(){
+						i++;
+						move(); 
+					}, 4000);
+					
+					//移动的函数
+					function move(){
+						
+						//如果i超出了图片总数量
+						if (i == size) {
+							i = 0; //即将移动到2张图
+						}
+						
+						//透明度切换到第i张图
+						_li1.eq(i).stop().fadeIn().siblings().stop().fadeOut();
+						
+						//改变ul2的按钮状态
+						_li2.eq(i).removeClass().addClass("active").siblings().removeClass("active"); 
+						
+					}
+					//上一页
+					$("#prev").click(function(){
+						i--;
+						move();
+					})
+					
+					//下一页
+					$("#next").click(function(){
+						i++;
+						move();
+					})
+					
+					_li2.mouseenter(function(){
+						i = $(this).index();
+						move();
+					})
+					
+					$("#box").hover(function(){
+						$("#prev").css({display:"block"});
+						$("#next").css({display:"block"});
+						clearInterval(timer);
+						 
+					}, 
+					function(){
+						$("#prev").css({display:"none"});
+						$("#next").css({display:"none"});
+						timer = setInterval(function(){
+							i++;
+							move();
+						}, 2000);
+					})
+				}
+									
+				
+			})
+		</script>
+		<!--banner图下面的轮播-->
+		<script>
+			$(function(){
+					//ajax获取数据
+				$.get("lunbo.json", function(responseData){
+					//console.log(responseData);
+					var arr = responseData.record;
+					
+					//遍历arr，动态创建节点
+					for (var i=0; i<arr.length; i++) {
+						var obj = arr[i];
+						$("<li><img src="+ obj.img +" ></li>").appendTo("#list3");
+					}
+					
+					//轮播
+					lunbo();
+				}) 
+				function lunbo(){
+					var _ul3 = $("#list3");
+					var _li3 = $("#list3 li");
+					
+					//初始化显示第一张图
+					_li3.eq(0).show().siblings().hide();
+					
+					//图片总数量
+					var size = $("#list3 li").size(); //4
+					
+					//自动轮播
+					var i = 0; //记录图片下标
+					var timer = setInterval(function(){
+						i++;
+						move(); 
+					}, 2000);
+					
+					//移动的函数
+					function move(){
+						
+						//如果i超出了图片总数量
+						if (i == size) {
+							i = 0; //即将移动到2张图
+						}
+						
+						//透明度切换到第i张图
+						_li3.eq(i).stop().fadeIn().siblings().stop().fadeOut();	
+					}
+									
+				} 
+			})
+		</script>
+		<!--系列产品轮播-->
+		<script>
+
+			$(function(){
+				//ajax获取数据
+				$.get("lunbo.json", function(responseData){
+					//console.log(responseData);
+					var arr = responseData.shows;
+					
+					//遍历arr，动态创建节点
+					for (var i=0; i<arr.length; i++) {
+						var obj = arr[i];
+						var li = $('<li></li>').appendTo('.ul6');
+						var span1 = $('<span class="span3"></span>').appendTo(li);
+						$("<img src="+ obj.img1 +" >").appendTo(span1);
+						$("<img class='img1' src="+obj.img2+" >").appendTo(span1);
+						var span2 = $('<span class="span4"></span>').appendTo(li);
+						$("<img src="+ obj.img3 +" >").appendTo(span2);
+					
+						var li1 = $("<li>"+obj.name+"</li>").appendTo(".ul5");
+						if (i==0) {
+							li1.addClass("active");
+						}
+							 
+					} ;
+					
+					 
+					//轮播 
+					lunbo();
+				})
+				
+				function lunbo(){
+					var _ul1 = $(".ul6");
+					var _li1 = $(".ul6 li");
+					var _ul2 = $(".ul5");
+					var _li2 = $(".ul5 li");
+					
+						//初始化显示第一张图
+					_li1.eq(0).show().siblings().hide();
+					
+					//图片总数量
+					var size = $("#list1 li").size(); //4
+					
+					//自动轮播
+					var i = 0; //记录图片下标
+					var timer = setInterval(function(){
+						i++;
+						move(); 
+					}, 2000);
+					
+					//移动的函数
+					function move(){
+						
+						//如果i超出了图片总数量
+						if (i == size) {
+							i = 0; //即将移动到2张图
+						}
+						
+						//透明度切换到第i张图
+						_li1.eq(i).stop().fadeIn().siblings().stop().fadeOut();
+						
+						//改变ul2的按钮状态
+						_li2.eq(i).removeClass().addClass("active").siblings().removeClass("active"); 
+						
+					}
+					//li2上面的按钮
+				_li2.hover(function(){
+						var index = $(this).index();
+						//console.log(index);
+						i = index;
+						move();
+					})
+				
+				//移入box3, 移出box3
+				$("#box3").hover(function(){
+					//移入, 关闭定时器
+					clearInterval(timer);
+				}, 
+				function(){
+					//移出, 重新开启定时器
+					timer = setInterval(function(){
+						i++;
+						move();
+					}, 2000);
+				})
+				}
+			})
+		</script>
+		<!--婚戒钻戒-->
+		<script>
+			$(function(){
+				
+				$(".imag ul li").mouseenter(function(){
+					$(this).stop(true).animate({top:-10},500)
+				})
+				$(".imag ul li").mouseleave(function(){
+					$(this).stop(true).animate({top:0},500)
+				})
+				
+				var n = 4;
+				$("#img4").click(function(){	
+					n--;
+					if(n<1){
+						n=0;
+					$("#img1").show();
+					$("#img2").show();
+					$("#img4").hide();
+					
+					}
+					$(".imag ul").css({left:-295*n})  
+					
+				})
+				
+				var n =1;
+				$("#img3").click(function(){	
+					n++;
+					if(n>=4){
+						n=4;
+					$("#img2").hide();
+					$("#img3").show();
+					$("#img4").show();
+						
+					}
+					$(".imag ul").css({left:-295*n})  
+					
+				})		  
+				
+			})
+		</script>
+		
+		
+		<!---->
+		<script>
+			$(function(){
+				//ajax获取数据
+				$.get("lunbo.json", function(responseData){
+					//console.log(responseData);
+					var arr = responseData.addr;
+					
+					//遍历arr，动态创建节点
+					for (var i=0; i<arr.length; i++) {
+						var obj = arr[i];
+						$("<li><img src="+ obj.img +" ></li>").appendTo(".ul7");
+						var li = $("<li></li>").appendTo(".ul8");
+						if (i==0) {
+							li.addClass("active");
+						}
+					}
+					
+					//轮播
+					lunbo();
+				})
+				
+				
+					
+					function lunbo(){
+					//jq轮播图
+					var ul7 = $(".ul7");
+					var ul8 = $(".ul8");
+					var li1 = $(".ul7 li");
+					var li2 = $(".ul8 li");
+				//复制第一张图到最后
+				li1.first().clone(true).appendTo(ul7);
+				//
+				var size = $(".ul7 li").size();
+				ul7.width(700*size);
+				//开启定时器
+					var i = 0;
+					var timer = setInterval(function(){
+						i++;
+						move();
+					}, 2000);
+					
+					function move(){
+						
+						if (i < 0) {
+							ul7.css("left", -700*(size-1));
+							i = size-2;
+						}
+						
+						if (i >= size){
+							ul7.css("left", 0);
+							i = 1;
+						}
+						
+						ul7.stop().animate({left:-i*700}, 500);
+						
+						li2.eq(i).addClass("active").siblings().removeClass("active");
+						if (i == size-1) {
+							li2.eq(0).addClass("active").siblings().removeClass("active");
+						}
+					}
+					
+					li2.mouseenter(function(){
+						i = $(this).index();
+						move();
+					})
+					
+					$(".box1").hover(function(){
+						//console.log("mouseenter");
+						clearInterval(timer);
+					}, 
+					function(){
+						//console.log("mouseleave");
+						timer = setInterval(function(){
+							i++;
+							move();
+						}, 2000);
+					})
+					
+				}
+			
+				
+			})
+		</script>
+		
+		
+		<!---->
+		
+		
+		<!--城市-->
+		<script>
+			
+			$(function(){
+				//ajax获取数据
+				$.get("lunbo.json", function(responseData){
+					//console.log(responseData);
+					var arr = responseData.citys;
+					
+					//遍历arr，动态创建节点
+					
+					
+					
+					for (var i=0; i<arr.length; i++) {
+						var obj = arr[i];
+						
+						var li = $("<li></li>").appendTo(".ul3");
+						$("<a href='#' class='active'>"+obj.name+"</a>").appendTo(li);
+						$("<span>"+obj.other+"</span>").appendTo(li);
+						
+					 $("<li class='li1'><a href='#'>"+obj.city+"</a></li>").appendTo(".ul9");
+					  $("<li class='li2'></li>").appendTo(".ul9");
+					  $("<li class='li3'><a href='#'>"+obj.dizhi+"</a></li>").appendTo(".ul9");
+					  $("<li class='li4'><a href='#'>"+obj.time+"</a></li>").appendTo(".ul9");
+					  $("<li class='li5'><a href='#'>"+obj.phone+"</a></li>").appendTo(".ul9");			 
+					 $("<li class='li6'><input type='text' placeholder="+obj.holder+"></li>").appendTo(".ul9");
+					  $("<li class='li7'><a href='#'>"+obj.yuyue+"</a></li>").appendTo(".ul9");
+					  
+					  /*if (i==0) {
+						 a.addClass("active");
+						}*/	
+					}	
+					
+					$(".ul3").on("mouseenter","a",function(){
+						$(this).css({color:"red"});
+						var index = $(this).index(".ul3 a");
+						//console.log(index)
+						$(".ul9 .li1 a").html(arr[index].city);
+						$(".ul9 .li2 a").html(arr[index].dizhi);
+						$(".ul9 .li4 a").html(arr[index].time);
+						$(".ul9 .li5 a").html(arr[index].phone);
+						
+					})
+					$(".ul3").on("mouseleave","a",function(){
+						$(this).css({color:"#000"})
+					})
+					
+				})
+				
+			
+			
+				
+			})
+		</script>
+		
+		<!--....群星闪耀轮播图...-->
+		<script>
+			$(function(){
+				//ajax获取数据
+				$.get("lunbo.json", function(responseData){
+					//console.log(responseData);
+					var arr = responseData.last;
+					
+					//遍历arr，动态创建节点
+					for (var i=0; i<arr.length; i++) {
+						var obj = arr[i];
+						$("<li><img src="+ obj.img +" ></li>").appendTo("#list5");
+						//console.log(obj.img)
+						var li = $("<li></li>").appendTo("#list4");
+						if (i==0) {
+							li.addClass("active");
+						}
+					}
+					
+					//轮播
+					lunbo();
+				})
+				
+				function lunbo(){
+					//jq轮播图
+					var list5 = $("#list5");
+					var list4 = $("#list4");
+					var li55 = $("#list5 li");
+					var li4 = $("#list4 li");
+				//复制第一张图到最后
+				li55.first().clone(true).appendTo(list5)
+				//
+				var size = $("#list5 li").size();
+				list5.width(480*size);
+				//开启定时器
+					var i = 0;
+					var timer = setInterval(function(){
+						i++;
+						move();
+					}, 2000);
+					
+					function move(){
+						
+						if (i < 0) {
+							list5.css("left", -480*(size-1));
+							i = size-2;
+						}
+						
+						if (i >= size){
+							list5.css("left", 0);
+							i = 1;
+						}
+						
+						list5.stop().animate({left:-i*480}, 500);
+						
+						li4.eq(i).addClass("active").siblings().removeClass("active");
+						if (i == size-1) {
+							li4.eq(0).addClass("active").siblings().removeClass("active");
+						}
+					}
+					
+					li4.mouseenter(function(){
+						i = $(this).index();
+						move();
+					}) 
+					
+					$(".box9").hover(function(){
+						//console.log("mouseenter");
+						clearInterval(timer);  
+					}, 
+					function(){
+						//console.log("mouseleave");
+						timer = setInterval(function(){
+							i++;
+							move();
+						}, 2000);
+					})
+					
+				}
+			
+			})
+		</script>
+		
+	<!--回到顶部-->
+	<script>
+		onload=function(){
+			window.onscroll=function(){
+				var scrollTop = document.documentElement.scrollTop || document.body.scrollTop; 
+				if(document.documentElement.scrollTop>960){
+					$("#boxx").show()
+				}
+				else{
+					$("#boxx").hide()
+				}
+			}
+			var boxx = document.getElementById("boxx");
+			boxx.onclick = function(){
+				document.documentElement.scrollTop = 0;
+			} 		
+		}		
+		
+	</script>
+	<!---->
+	<script>
+		$(function(){
+			if($.cookie("nmb")){
+				$("#span1").html(JSON.parse($.cookie("nmb")))
+				$("#spo").html(JSON.parse($.cookie("nmb")))
+			}
+			if($.cookie("name")){
+				$("#limm").html(JSON.parse($.cookie("name")))
+				$("#limn").html("会员您好！");
+				$("#limb").html("退出登录");
+				
+			} 
+		})   
+	</script>      
+	    
+	</head>      
+	<body> 
+		<!--top部分-->   
+		<div id="top-wraper">
+			<div class="top">
+				<ul>
+					<li id="limm">欢迎进入钻石小鸟官网</li>
+					<li id="limn"><a href="../login/login.html">登录</a></li>
+					<li id="limb"><a href="../register/register.html">注册</a></li>
+				</ul>
+				<ul class="ul1"> 
+					<li class="li1">
+						<img src="images/header_box.png"  />
+						<a href="#">购物车</a>
+						<span id="span1"  class="span2">0</span>
+						<span class="span1"><img src="images/icon_drop.png"</span>
+						<p>购物车中无商品</p>
+					</li>
+					 
+					<li>
+						<a href="#">我的订单</a>
+					</li>
+					<li class="li2">
+						<a href="#">我的鸟巢</a>
+						<span class="span1"><img src="images/icon_drop.png"</span>
+						<ul class="ul33">
+							<li>订单查询</li>
+							<li>售后服务</li>
+							<li>积分换礼</li>
+						</ul>
+					</li> 
+					<li>
+						<a href="#">钻石课堂</a>
+					</li>
+					<li class="li3">
+						<a href="#">手机官网</a>
+						<ul class="ul4">
+							<li>
+								<img src="images/code_wechat.jpg"  />
+							</li>
+							
+						</ul>
+					</li>
+				</ul>
+				
+			</div>
+		</div>
+		
+		
+		<!--header部分--> 
+		<div id="header-wraper">
+			<div class="header">
+				<h2>
+					<img src="images/33.png"  />
+				</h2>
+				<form id="form1">
+					<input class="input1" type="text" placeholder="戒托"/>
+					<a href="#">来店预约</a>
+					<img src="images/icon_ser.jpg" />
+				</form>	
+				
+			</div>	
+		</div>
+		<!--nav部分-->
+		<!--1-->
+		<div id="nav-wraper">
+			
+			<div class="nav">
+				
+				<ul class="ul1">
+					<li class="li1">
+						<a href="#">首页</a>
+					</li>
+					<!---->  
+					<li class="li2">
+						<a href="#">钻石</a>	 
+						<div class="div1">
+							<div class="left1"	>
+								<span>
+									<h1><a href="#">钻石</a></h1>
+									<h2><a href="#">探索全部钻石</a></h2>
+									<h3><a href="#">30分裸钻</a></h3>
+									<h3><a href="#">50分裸钻</a></h3>
+									<h3><a href="#">70分裸钻</a></h3>
+									<h3><a href="#">克拉钻</a></h3>
+									<h3><a href="#">海淘钻石&nbsp;&nbsp;立省15%</a></h3>
+									<h3><a href="#">北极光钻石</a></h3>
+									<h3><a href="#">FireCushion钻石</a></h3>	
+								</sapn>
+								 
+							</div>	
+							<div class="left2"	>
+								<span>
+									<h4><a href="#">圆形</a></h4>
+									<h4><a href="#">公主方</a></h4>
+									<h4><a href="#">祖母绿</a></h4>
+									<h4><a href="#">橄榄形</a></h4>
+									<h4><a href="#">椭圆形</a></h4>
+									<h4><a href="#">梨形</a></h4>
+									<h4><a href="#">心形</a></h4>	
+								</span>
+							</div>
+							<div class="left3"	>
+								<span>
+									<h4><a href="#">定制一款钻戒</a></h4>
+									<h4><a href="#">定制一款吊坠</a></h4>
+									<h4><a href="#">钻石4C知识</a></h4>
+									<h4><a href="#">钻石其他参数如何查看</a></h4>
+									<h4><a href="#">钻石证书知识</a></h4>
+									<h4><a href="#">甄选特惠裸钻专区</a></h4>
+									
+								</span>
+							</div>
+							<div class="left4"	>
+								<img src="images/ejdh1.jpg">
+							</div>
+							 
+						</div>
+					</li>
+					<!---->
+					<li class="li3">
+						<a href="../list/list.html">婚戒</a>
+						<div class="div2">
+							<div class="left1"	>
+								<span>
+									<h1><a href="#">婚戒</a></h1>
+									<h2><a href="#">探索全部婚戒</a></h2>
+									<h3><a href="#">简约独钻</a></h3>
+									<h3><a href="#">奢华群镶</a></h3>
+									<h3><a href="#">克拉钻戒</a></h3>
+									<h3><a href="#">大气男戒</a></h3>
+									<h3><a href="#">纪念戒/花戒</a></h3>
+									<h3><a href="#">戒托款式</a></h3>
+									<h3><a href="#">人气热销</a></h3>	
+								</sapn>
+								
+							</div>	
+							<div class="left2"	>
+								<span>
+									<h4><a href="#">TRIMARK系列</a></h4>
+									<h4><a href="#">北极光系列</a></h4>
+									<h4><a href="#">LADY NEW YORK</a></h4>
+									<h4><a href="#">心心相印系列</a></h4>
+									<h4><a href="#">钟情蕾丝系列</a></h4>
+									<h4><a href="#">宠爱系列</a></h4>
+									<h4><a href="#">玲珑系列</a></h4>
+									<h4><a href="#">幸福三指环</a></h4>	
+								</span>
+							</div>
+							<div class="left3"	>
+								<span>
+									<h4><a href="#">如何测量尺寸</a></h4>
+									<h4><a href="#">如何挑选适合的戒指款式</a></h4>
+									<h4><a href="#">如何选购戒托材质</a></h4>
+									<h4><a href="#">匠心工艺</a></h4>			
+								</span>
+							</div>
+							<div class="left4"	>
+								<img src="images/ejdh2.jpg">
+							</div>
+							 
+						</div>
+						
+					</li>
+					<li>
+						<a href="#">对戒</a>
+					</li>
+					<li>
+						<a href="#">配饰</a> 
+					</li>
+					<li>
+						<a href="#">定制</a>
+					</li>
+					<li>
+						<a href="#">体验中心</a>
+					</li>
+				</ul>
+				
+				
+				<ul class="ul2">
+					<li>
+						<a href="#">商务加盟</a>
+					</li>
+					<li>
+						<a href="#">品牌故事</a>
+					</li>
+					<li>
+						<a href="#">鸟巢论坛</a>
+					</li>
+				</ul>
+			</div> 
+			  
+		</div> 
+		<!--banner--> 
+		<div id="box">
+			<ul id="list1">
+				<!--<li><img src="images/lubo1.jpg" /></li>
+				<li><img src="images/lubo2.jpg" /></li>
+				<li><img src="images/lubo3.jpg" /></li>
+				<li><img src="images/lubo4.jpg" /></li>
+				<li><img src="images/lubo5.jpg" /></li>-->
+			</ul>
+			<div></div>
+			<ul id="list2">
+				<!--<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>-->
+			</ul>
+			<div id="prev"><img src="images/prev_54_02.png"/></div>
+			<div id="next"><img src="images/next_54_02.png"/></div>
+		</div>
+		<!--main部分-->
+		<div id="main-wraper">
+			<div class="main">
+				<ul class="ul1">
+					<li class="li1">设 计 订 婚 戒 指</li>
+					<li class="li2">
+						<div id="box1">
+							<ul id="list3">
+								<!--<li><img src="images/diy_1.jpg" /></li>
+								<li><img src="images/diy_2.jpg" /></li>
+								<li><img src="images/diy_3.jpg" /></li>-->
+							</ul>
+						</div>
+					</li>
+					<li class="li3">
+						<a href="#">从挑选钻石开始</a>
+					</li>
+					<li class="li4">
+						<a href="#">从挑选款式开始</a>
+					</li> 
+				</ul>
+				<ul class="ul2">  
+					<li><img src="images/21.jpg"</li>
+				</ul>
+			</div>
+		</div>
+		
+		<!--系列产品-->
+		 
+		<div id="product-wraper">
+			<h2>
+				<span class="span5">系列产品</span>
+			</h2>
+			<div id="box3">
+				
+				<ul class="ul6">
+					
+					<!--<li>
+						<span class="span3">
+							<img src="images/10.jpg" />
+							<img class="img1" src="images/9.jpg" />
+						</span>
+						<span class="span4">
+							<img src="images/31.jpg" />
+						</span>
+					</li> 
+					
+					<li>
+						<span class="span3">
+							<img src="images/30.jpg" />
+							<img class="img1" src="images/29.jpg" />
+						</span>
+						<span class="span4">
+							<img src="images/8.jpg" />
+						</span>
+					</li>
+					
+					<li>
+						<span class="span3">
+							<img src="images/11.jpg" />
+							<img class="img1" src="images/28.jpg" />
+						</span>
+						<span class="span4">
+							<img src="images/19.jpg" />
+						</span>
+					</li>
+					
+					<li>
+						<span class="span3">
+							<img src="images/22.jpg" />
+							<img class="img1" src="images/18.jpg" />
+						</span>
+						<span class="span4">
+							<img src="images/6.jpg" />
+						</span>
+					</li>
+					
+					<li>
+						<span class="span3">
+							<img src="images/24.jpg" />
+							<img class="img1" src="images/16.jpg" />
+						</span>
+						<span class="span4">
+							<img src="images/25.jpg" />
+						</span>
+					</li>-->
+				</ul> 
+				
+				<div></div>
+				<ul class="ul5">
+					<!--<li class="active" class="li1">推荐</li>
+					<li>钻石</li>
+					<li>婚戒</li>
+					<li>对戒</li>
+					<li>配饰</li>-->
+				</ul>
+			</div>
+		</div>
+		 
+		
+		<!--婚戒&钻戒-->
+		<div id="h6">
+			<h6>
+				<span>婚 戒 推 荐</span>
+				<img src="images/icon_and.jpg" />
+				<span>全 球 美 钻</span>
+			</h6>
+		</div>
+		
+		<!--婚戒&钻戒图片--> 
+		<div id="imag-wraper"> 
+			
+			<div class="imag">
+				<img id="img1" src="images/icon_prev_02.png" />
+				<img id="img4" src="images/icon_prev_01.png" />
+				<ul id="ul">
+					<!--<li>
+						<a href="#">
+							<img src="images/7.jpg"  />  
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="images/14.jpg"  />
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="images/13.jpg"  />
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="images/15.jpg"  />
+						</a>
+					</li>						
+					<li>
+						<a href="#">
+							<img src="images/26.jpg"  />
+						</a>
+					</li>	
+					<li>
+						<a href="#">
+							<img src="images/12.jpg"  />
+						</a>
+					</li>	
+					<li> 
+						<a href="#">
+							<img src="images/20.jpg"  />
+						</a>
+					</li>	
+					<li>
+						<a href="#">
+							<img src="images/23.jpg"  />
+						</a>
+					</li>-->
+				</ul>
+				<img id="img2" src="images/icon_prev_03.png" />
+				<img id="img3" src="images/icon_prev_04.png" />
+				
+			</div>
+			
+		</div>
+		<div id="div11"></div>
+		
+		<!--钻石分类-->
+		<div id="diamond-wraper">
+			<div class="diamond">
+				<ul>
+					<li>
+						<img src="images/icon_shape_02.png" />
+						<img class="img1" src="images/icon_shape_13.png" />
+					</li>
+					<li>
+						<img src="images/icon_shape_03.png" />
+						<img class="img1" src="images/icon_shape_14.png" />
+					</li>
+					<li>
+						<img src="images/icon_shape_04.png" />
+						<img class="img1" src="images/icon_shape_15.png" />
+					</li>
+					<li>
+						<img src="images/icon_shape_06.png" />
+						<img  class="img1" src="images/icon_shape_16.png" />
+					</li>
+					<li>
+						<img src="images/icon_shape_07.png" />
+						<img class="img1" src="images/icon_shape_17.png" />
+					</li>
+					<li>
+						<img src="images/icon_shape_08.png" />
+						<img class="img1" src="images/icon_shape_18.png" />
+					</li>
+					<li>
+						<img src="images/icon_shape_09.png" />
+						<img class="img1" src="images/icon_shape_19.png" />
+					</li>
+					<li>
+						<img src="images/icon_shape_10.png" />
+						<img class="img1" src="images/icon_shape_20.png" />
+					</li>
+					<li>
+						<img src="images/icon_shape_11.png" />
+						<img class="img1" src="images/icon_shape_21.png" />
+					</li>
+					<li>
+						<img src="images/icon_shape_12.png" />
+						<img class="img1" src="images/icon_shape_22.png" />
+					</li>
+				</ul>
+				<ul class="ul1">
+					<li class="li1">
+						<a href="#">ROUND</a>
+						<h2>圆形</h2>
+						<img class="img1" src="images/icon_shape_13.png" />
+					</li>
+					<li class="li2">
+						<a href="#">PRINCESS</a>
+						<h2>公主方</h2>
+						<img class="img1" src="images/icon_shape_14.png" />
+					</li>
+					<li class="li3">
+						<a href="#">CUSHION</a>
+						<h2>垫形</h2>
+						<img class="img1" src="images/icon_shape_15.png" />
+					</li>
+					<li class="li4">
+						<a href="#">EMERALD</a>
+						<h2>祖母绿</h2>
+						<img class="img1" src="images/icon_shape_16.png" />
+					</li>
+					<li class="li5">
+						<a href="#">OVAL</a>
+						<h2>橄榄形</h2>
+						<img class="img1" src="images/icon_shape_17.png" />
+					</li>
+					<li class="li6">
+						<a href="#">RADIANT</a>
+						<h2>椭圆形</h2>
+						<img class="img1" src="images/icon_shape_18.png" />
+					</li>
+					<li class="li7">
+						<a href="#">MARQUISE</a>
+						<h2>雷地恩</h2>
+						<img class="img1" src="images/icon_shape_19.png" />
+					</li>
+					<li class="li8">
+						<a href="#">PEAR</a>
+						<h2>榄尖形</h2>
+						<img class="img1" src="images/icon_shape_20.png" />
+					</li>
+					<li class="li9">
+						<a href="#">HEART</a>
+						<h2>梨形</h2>
+						<img class="img1" src="images/icon_shape_21.png" />
+					</li>
+					<li class="li10">
+						<a href="#">TRILLION</a>
+						<h2>心形</h2>
+						<img class="img1" src="images/icon_shape_22.png" />
+					</li>
+				</ul>			
+			</div>
+		</div>
+		<!--品牌故事-->
+		<div id="tale-wraper">
+			<div class="tale">
+				<a href="#"><img class="img1" src="images/32.jpg" /></a>
+				<a class="a1" href="#"></a>
+				<a href="#"><img class="img2" src="images/27.gif" /></a>
+				<a class="a2" href="#"></a>
+			</div>
+		</div>
+		<!---->
+		<div id="div9">
+			<div class="div9">
+				<a href="#"><img src="images/17.jpg" /></a>
+			</div>
+		</div>
+		<!--分类-->
+		<div id="div10">
+			<ul class="ul3">
+				<!--<li >
+					<a href="#" class="active">北京</a>
+					<span>/</span> 
+				</li>
+			
+				<li>
+					<a href="#">上海</a>
+					<span>/</span>
+				</li>
+				
+				<li>
+					<a href="#">杭州</a>
+					<span>/</span>
+				</li>
+				
+				<li>
+					<a href="#">广州</a>
+					<span>/</span>
+				</li>
+				
+				<li>
+					<a href="#">武汉</a>
+					<span>/</span>
+				</li>
+				
+				<li>
+					<a href="#">郑州</a>
+					<span>/</span>
+				</li>
+			
+				<li>
+					<a href="#">天津</a>
+					<span>/</span>
+				</li>
+				
+				<li>
+					<a href="#">西安</a>
+					<span>/</span>
+				</li>
+				
+				<li>
+					<a href="#">南京</a>
+					<span>/</span>
+				</li>
+				
+				<li>
+					<a href="#">宁波</a>
+					<span>/</span>
+				</li>
+				
+				<li>
+					<a href="#">成都</a>
+					<span>/</span>
+				</li>
+				
+				<li>
+					<a href="#">重庆</a>
+					<span>/</span>
+				</li>
+				
+				<li>
+					<a href="#">合肥</a>
+					<span>/</span>
+				</li>
+				
+				<li>
+					<a href="#">盐城</a>
+					<span>/</span>
+				</li>
+				
+				<li>
+					<a href="#">济宁</a>
+					<span>/</span>
+				</li>
+				
+				<li>
+					<a href="#">盐城金鹰</a>
+					<span>/</span>
+				</li>
+				
+				<li>
+					<a href="#">丽水</a>
+					<span>/</span>
+				</li>
+				
+				<li>
+					<a href="#">宿迁</a>
+					<span>/</span>
+				</li>
+				
+				<li>
+					<a href="#">苏州</a>
+					<span>/</span>
+				</li>
+				
+				<li>
+					<a href="#">烟台</a>
+					<span>/</span>
+				</li>
+				
+				<li>
+					<a href="#">南昌</a>
+					<span>/</span>
+				</li>	-->
+			</ul>
+			
+			<div class="addidas">
+				
+				<div class="box1">
+					<ul class="ul7">
+						<!--<li>
+							<img src="images/st_1.jpg" />
+						</li>
+						<li>
+							<img src="images/st_2.jpg" />
+						</li>
+						<li>
+							<img src="images/st_3.jpg" />
+						</li>
+						<li>
+							<img src="images/st_4.jpg" />
+						</li>-->
+					</ul>
+					
+					<ul class="ul8">
+						<!--<li class="active"></li>
+						<li></li>
+						<li></li>
+						<li></li>-->
+					</ul>
+				</div>
+				
+				<div class="box2">
+					<ul class="ul9">
+						<!--<li class="li1">
+							<a href="#">北 京 体 验 中 心</a>
+						</li>
+						<li class="li2"></li>
+						<li class="li3">
+							<a href="#">王府井大街138号新东安T2办公楼7层</a>
+						</li>
+						<li class="li4">
+							<a href="#">周一~周五10:30~20:00周六~周日10:00~20:30</a>
+						</li>
+						<li class="li5">
+							<a href="#">咨询电话&nbsp;010-85186550</a>
+						</li>
+						<li class="li6">
+							<input type="text" placeholder="免费发送地址到手机"/>
+						</li>	
+						<li class="li7">
+							<a href="#">
+								在线预约进店
+							</a>
+						</li>-->
+					</ul>
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		
+		
+		<!--底部导航-->
+		<div id="pro-wraper">
+			<div class="pro">
+				<div class="box8">
+					<ul class="ull">
+						<li class="li1">资讯动态</li>
+						<li class="li3"><a href="#">钻石小鸟成都体验中心九周年店庆分享...</a></li>
+						<li><a href="#">钻石小鸟成都体验中心九周年店庆分享...</a></li>
+						<li><a href="#">钻石小鸟成都体验中心九周年店庆分享...</a></li>
+						<li><a href="#">钻石小鸟成都体验中心九周年店庆分享...</a></li>
+						<li><a href="#">钻石小鸟成都体验中心九周年店庆分享...</a></li>
+						<li><a href="#">钻石小鸟成都体验中心九周年店庆分享...</a></li>
+						<li class="li2"><a href="#">查看全部</a></li>
+					</ul>
+					<ul id="ulo">
+						<li class="li1">钻石课堂</li>
+						<li class="li3"><a href="#">钻石荧光知识普及</a></li>
+						<li><a href="#">成功率最高的表白方式</a></li>
+						<li><a href="#">世界上著名的粉钻</a></li>
+						<li><a href="#">成功率最高的表白方式</a></li>
+						<li><a href="#">世界上著名的粉钻</a></li>
+						<li><a href="#">教你钻石怎么辨别真伪？</a></li>
+						<li class="li2"><a href="#">查看全部</a></li>
+					</ul>
+					
+				</div>
+					
+				<div class="box9">
+					<ul id="list5">
+						<!--<li><img src="images/34.jpg"/></li>	
+						<li><img src="images/ad_01.jpg"/></li>-->
+					</ul>
+					
+					<ul id="list4">
+						<!--<li class="active"></li>
+						<li></li>-->
+					</ul>
+					
+				</div>
+				
+			</div>
+		</div>
+		
+		<!--尾部-->
+		<div id="bottom-wraper">
+			<div class="bottom">
+				<ul class="u1">
+					<li class="li6">
+						<a href="#">全国免费配送</a>
+					</li>
+					<li>
+						<a href="#">商品货到付款</a>
+					</li>
+					<li>
+						<a href="#">钻石以小换大</a>
+					</li>
+					<li>
+						<a href="#">钻石一钻双证</a>
+					</li>
+					<li>
+						<a href="#">15天免费退换</a>
+					</li>
+					<li class="li1">
+						<a href="#">商品终生退换</a>
+					</li>
+				</ul>
+				
+				<ul class="u2">
+					<li class="lia"><img src="images/logo1.jpg"/></li>
+					<li class="lio">
+						<dl>
+							<dh>关于我们</dh>
+							<dd><a href="#">品牌简介</a></dd>
+							<dd><a href="#">市场合作</a></dd>
+							<dd><a href="#">联系我们</a></dd>
+							<dd><a href="#">商务加盟</a></dd>
+						</dl>
+					</li>
+					<li class="lio">
+						<dl>
+							<dh>关于我们</dh>
+							<dd><a href="#">品牌简介</a></dd>
+							<dd><a href="#">市场合作</a></dd>
+							<dd><a href="#">联系我们</a></dd>
+							<dd><a href="#">商务加盟</a></dd>
+						</dl>
+					</li>
+					<li class="lio">
+						<dl>
+							<dh>关于我们</dh>
+							<dd><a href="#">品牌简介</a></dd>
+							<dd><a href="#">市场合作</a></dd>
+							<dd><a href="#">联系我们</a></dd>
+							<dd><a href="#">商务加盟</a></dd>
+						</dl>
+					</li>
+					<li class="lio">
+						<dl>
+							<dh>关于我们</dh>
+							<dd><a href="#">品牌简介</a></dd>
+							<dd><a href="#">市场合作</a></dd>
+							<dd><a href="#">联系我们</a></dd>
+							<dd><a href="#">商务加盟</a></dd>
+						</dl>
+					</li>
+					<li class="lio">
+						<dl>
+							<dh>关于我们</dh>
+							<dd><a href="#">品牌简介</a></dd>
+							<dd><a href="#">市场合作</a></dd>
+							<dd><a href="#">联系我们</a></dd>
+							<dd><a href="#">商务加盟</a></dd>
+						</dl>
+					</li>
+					<li class="lii"><img src="images/web_code.jpg"/></li>
+				</ul>
+				
+				<div class="boxa">
+					<div class="boxb">
+						<ul class="ulc">
+							<li class="li1">400-880-0051</li>
+							<li>咨询时间:09:00-21:00</li>
+						</ul>
+						<ul class="uld">
+							<li>进店有礼&nbsp;&nbsp;甜蜜不停</li>
+						</ul>
+					</div>
+				</div>
+				
+				
+				<ul class="ulf">
+					<li><a href="#">网站地图</a></li>
+					<li><a href="#">网站地图</a></li>
+					<li><a href="#">网站地图</a></li>
+					<li>沪ICP备08011593号</li>
+					<li class="li1">Copyright &copy 2002-2007 www.zbird 钻石小鸟	 All Right Reserved</li>
+				</ul>
+				<h6>上海铂利德钻石有限公司&nbsp;&nbsp;021-26011188</h6>
+				
+				<ul class="ulg">
+					<li><a href="#">南湖国旅</a></li>
+					<li><a href="#">可可礼物</a></li>
+					<li><a href="#">卷皮网</a></li>
+					<li><a href="#">加盟网</a></li>
+					<li><a href="#">京东优评</a></li>
+					<li><a href="#">免费发布信息网</a></li>
+					<li><a href="#">白银网</a></li>
+					<li><a href="#">黄金网</a></li>
+					<li><a href="#">返利网</a></li>
+					<li><a href="#">生日礼物</a></li>
+					<li><a href="#">深圳地图</a></li>
+					<li><a href="#">黑光网</a></li>
+					<li class="li2"><a href="#">优惠劵</a></li>	
+				</ul>
+				
+				<ul class="ulh">
+					<li><img src="images/fot_certi.gif"/></li>
+					<li><img src="images/fot_certi_02.jpg"/></li>
+					<li><img src="images/fot_certi_03.jpg"/></li>
+					<li><img src="images/fot_certi_04.jpg"/></li>
+					<li><img src="images/picp_bg.png"/></li>
+				</ul>
+			</div>
+		</div>
+		
+		<!--回到顶部-->
+		<div id="boxx">
+			<img src="images/s_totop_01.png" />
+		</div>
+		<!--固定-->
+		<div id="boxd">
+			<h1><img src="images/img.png"/></h1>
+			<ul> 
+				<li><img src="images/1.gif"/></li>
+				<li id="lo"><img src="images/2.jpg"/><span id="spo">0</span></li>
+				<li><img src="images/3.jpg"/></li>
+				<li><img src="images/4.jpg"/></li>
+				<li class="lig">
+					<img src="images/5.jpg"/>
+					<h3><img src="images/code.jpg"/></h3>
+				</li>
+			</ul>
+		</div> 
+		
+	</body>
+</html>

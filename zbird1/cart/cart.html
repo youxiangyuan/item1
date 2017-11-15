@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>购物车</title>
+		<link href="../commons/css/common.css" type="text/css" rel="stylesheet"/>
+	   	<link href="../commons/css/reset.css" type="text/css" rel="stylesheet"/>
+	   	<link href="css/style5.css" type="text/css" rel="stylesheet"/>
+	   	
+	   	<script src="js/jquery-1.12.3.js"></script>
+	   	<script src="js/jquery.cookie.js"></script>
+	   	<script src="js/cart.js"></script>
+	   	<script>
+	   		$(function(){
+			if($.cookie("nmb")){
+				$("#span1").html(JSON.parse($.cookie("nmb")))
+				$("#spo").html(JSON.parse($.cookie("nmb")))
+			}
+			if($.cookie("name")){
+				$("#limm").html(JSON.parse($.cookie("name")))
+				$("#limn").html("会员您好！");
+				$("#limb").html("退出登录");
+				
+			}
+		})
+	   	</script>
+	   	
+	</head>
+	<body> 
+		<!--top部分-->   
+		<div id="top-wraper"> 
+			<div class="top">
+				<ul>
+					<li id="limm">欢迎进入钻石小鸟官网</li>
+					<li id="limn"><a href="../login/login.html">登录</a></li>
+					<li id="limb"><a href="../register/register.html">注册</a></li>
+				</ul>
+				<ul class="ul1">
+					<li class="li1">
+						<img src="images/header_box.png"  />
+						<a href="#">购物车</a>
+						<span  id ="span" class="span2">0</span>
+						<span class="span1"><img src="images/icon_drop.png"</span>
+						<p>购物车中无商品</p>
+					</li>
+					
+					<li>
+						<a href="#">我的订单</a>
+					</li>
+					<li class="li2">
+						<a href="#">我的鸟巢</a>
+						<span class="span1"><img src="images/icon_drop.png"</span>
+						<ul class="ul33">
+							<li>订单查询</li>
+							<li>售后服务</li>
+							<li>积分换礼</li>
+						</ul>
+					</li> 
+					<li>
+						<a href="#">钻石课堂</a>
+					</li>
+					<li class="li3">
+						<a href="#">手机官网</a>
+						<ul class="ul4">
+							<li>
+								<img src="images/code_wechat.jpg"  />
+							</li>
+							
+						</ul>
+					</li>
+				</ul>
+				
+			</div>
+		</div>
+		
+		
+		<!--header部分--> 
+		<div id="header-wraper">
+			<div class="header">
+				<h2>
+					<img src="images/33.png"  />
+				</h2>
+				<h3>
+					<img src="images/shopcar_sanbu_1.png" />
+				</h3>
+			</div>	
+		</div> 
+		
+		<!--/////-->
+		<div id="div1">
+			<div class="div1"></div>
+		</div>
+		
+		
+		<!--购物车部分-->
+		<div id="div2">
+			<ul class="ul1">
+				<li class="li1">商品</li> 
+				<li class="li2">戒臂内圈刻字</li> 
+				<li class="li3">时光环刻字</li> 
+				<li class="li4">手寸</li> 
+				<li class="li5">小计</li> 
+				<li class="li6">操作</li>  
+				
+			</ul>
+			
+			<ul class="ul2">
+				<!--<li>
+					<input class="ckbox" type="checkbox" />
+					<img class="img" src="images/26764_303_.jpg" />
+					<span class="name">北极光月光女王</span>
+					<span class="name2">铂900钻石女戒</span>
+					<span class="span1">11.0</span>
+					<span class="price">￥32500</span>	
+					<a class="del" href="javascript:;">删除</a>
+				</li>-->
+			</ul> 
+			 
+			 
+			<ul class="ul3">
+				<li class="lia">
+					<a href="#" class="a1">清空购物车</a>
+					<a id="a2"  href="../index/index.html">继续购物</a>
+				</li>
+				<li class="lib">总额<span id="total">￥0</span></li>
+				<li class="lic">本次应付<span id="total2">￥0</span></li>
+			</ul> 
+		
+			<div class="box">
+				<p><a href="#">去结算</a></p>
+			</div>
+		</div>
+	
+	
+	
+	
+		<!--尾部-->
+		<div id="bottom-wraper">
+			<div class="bottom">
+				<ul class="u1">
+					<li class="li6">
+						<a href="#">全国免费配送</a>
+					</li>
+					<li>
+						<a href="#">商品货到付款</a>
+					</li>
+					<li>
+						<a href="#">钻石以小换大</a>
+					</li>
+					<li>
+						<a href="#">钻石一钻双证</a>
+					</li>
+					<li>
+						<a href="#">15天免费退换</a>
+					</li>
+					<li class="li1">
+						<a href="#">商品终生退换</a>
+					</li>
+				</ul>
+				
+				<ul class="u2">
+					<li class="lia"><img src="images/logo1.jpg"/></li>
+					<li class="lio">
+						<dl>
+							<dh>关于我们</dh>
+							<dd><a href="#">品牌简介</a></dd>
+							<dd><a href="#">市场合作</a></dd>
+							<dd><a href="#">联系我们</a></dd>
+							<dd><a href="#">商务加盟</a></dd>
+						</dl>
+					</li>
+					<li class="lio">
+						<dl>
+							<dh>关于我们</dh>
+							<dd><a href="#">品牌简介</a></dd>
+							<dd><a href="#">市场合作</a></dd>
+							<dd><a href="#">联系我们</a></dd>
+							<dd><a href="#">商务加盟</a></dd>
+						</dl>
+					</li>
+					<li class="lio">
+						<dl>
+							<dh>关于我们</dh>
+							<dd><a href="#">品牌简介</a></dd>
+							<dd><a href="#">市场合作</a></dd>
+							<dd><a href="#">联系我们</a></dd>
+							<dd><a href="#">商务加盟</a></dd>
+						</dl>
+					</li>
+					<li class="lio">
+						<dl>
+							<dh>关于我们</dh>
+							<dd><a href="#">品牌简介</a></dd>
+							<dd><a href="#">市场合作</a></dd>
+							<dd><a href="#">联系我们</a></dd>
+							<dd><a href="#">商务加盟</a></dd>
+						</dl>
+					</li>
+					<li class="lio">
+						<dl>
+							<dh>关于我们</dh>
+							<dd><a href="#">品牌简介</a></dd>
+							<dd><a href="#">市场合作</a></dd>
+							<dd><a href="#">联系我们</a></dd>
+							<dd><a href="#">商务加盟</a></dd>
+						</dl>
+					</li>
+					<li class="lii"><img src="images/web_code.jpg"/></li>
+				</ul>
+				
+				<div class="boxa">
+					<div class="boxb">
+						<ul class="ulc">
+							<li class="li1">400-880-0051</li>
+							<li>咨询时间:09:00-21:00</li>
+						</ul>
+						<ul class="uld">
+							<li>进店有礼&nbsp;&nbsp;甜蜜不停</li>
+						</ul>
+					</div>
+				</div>
+				
+				
+				<ul class="ulf">
+					<li><a href="#">网站地图</a></li>
+					<li><a href="#">网站地图</a></li>
+					<li><a href="#">网站地图</a></li>
+					<li>沪ICP备08011593号</li>
+					<li class="li1">Copyright &copy 2002-2007 www.zbird 钻石小鸟	 All Right Reserved</li>
+				</ul>
+				<h6>上海铂利德钻石有限公司&nbsp;&nbsp;021-26011188</h6>
+				
+				<ul class="ulg">
+					<li><a href="#">南湖国旅</a></li>
+					<li><a href="#">可可礼物</a></li>
+					<li><a href="#">卷皮网</a></li>
+					<li><a href="#">加盟网</a></li>
+					<li><a href="#">京东优评</a></li>
+					<li><a href="#">免费发布信息网</a></li>
+					<li><a href="#">白银网</a></li>
+					<li><a href="#">黄金网</a></li>
+					<li><a href="#">返利网</a></li>
+					<li><a href="#">生日礼物</a></li>
+					<li><a href="#">深圳地图</a></li>
+					<li><a href="#">黑光网</a></li>
+					<li class="li2"><a href="#">优惠劵</a></li>	
+				</ul>
+				
+				<ul class="ulh">
+					<li><img src="images/fot_certi.gif"/></li>
+					<li><img src="images/fot_certi_02.jpg"/></li>
+					<li><img src="images/fot_certi_03.jpg"/></li>
+					<li><img src="images/fot_certi_04.jpg"/></li>
+					<li><img src="images/picp_bg.png"/></li>
+				</ul>
+			</div>
+		</div>
+		
+		<!--回到顶部-->
+		<div id="boxx">
+			<img src="images/s_totop_01.png" />
+		</div>
+		<!--固定-->
+		<div id="boxd">
+			<h1><img src="images/img.png"/></h1>
+			<ul>
+				<li><img src="images/1.gif"/></li>
+				<li id="lo"><img src="images/2.jpg"/><span id="spo">0</span></li>
+				<li><img src="images/3.jpg"/></li>
+				<li><img src="images/4.jpg"/></li>
+				<li class="lig">
+					<img src="images/5.jpg"/>
+					<h3><img src="images/code.jpg"/></h3>
+				</li>
+			</ul>
+		</div>
+		
+	</body>
+</html>

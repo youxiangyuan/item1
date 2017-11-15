@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>钻石小鸟官网登录页</title>
+			<link href="../commons/css/common.css" type="text/css" rel="stylesheet"/>
+		   	<link href="../commons/css/reset.css" type="text/css" rel="stylesheet"/>
+		   	<link href="css/style2.css" type="text/css" rel="stylesheet"/>
+		   	<script src="js/ajax.js"></script>
+		 	 <script src="js/jquery-1.12.3.js"></script>
+	   		<script src="js/jquery.cookie.js"></script>
+		   	<script>
+		   		$(function(){
+		   			
+		   			var bnt = document.getElementById("bnt");
+		   			var aInput = document.getElementsByTagName("input");
+		   			var li1 = document.getElementById("li1");
+		   			
+		   			bnt.onclick = function(e){  
+		   					e.preventDefault();
+		   				 var username = aInput[0].value;
+       					 var pwd = aInput[1].value;
+       		 			  //ajax
+		        	var xhr = createXHR();
+		        	 xhr.open("post", "http://127.0.0.1/zbird/login/php/login.php", true);
+        			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        			xhr.send("username="+ username + "&pwd="+ pwd);
+        			xhr.onreadystatechange = function () {
+           				 if (xhr.readyState==4 && xhr.status==200) {
+               					 //console.log(xhr.responseText);
+                			var obj = JSON.parse(xhr.responseText);
+
+               				 if (obj.status == 1) {
+                   				 //跳转到首页
+                   				 location.href = "../index/index.html";	
+                   				 $.cookie("name",JSON.stringify(aInput[0].value),{expires:30,path:"/"})
+                   				/*console.log(JSON.stringify(aInput[0].value)) */    				  
+               				 } 
+               				 else { 
+                    			//登录失败
+                    			alert(obj.msg);
+                			}
+            			} 
+        			}
+        			
+		   			} 
+		   		
+		   		}) 
+		   			
+		   		
+		   	</script>
+	</head>
+	<body>
+		<!--top部分-->
+		<div id="top-wraper">
+			<div class="top">
+				<ul >
+					<li >欢迎进入钻石小鸟官网</li>
+					<li><a href="#">登录</a></li>
+					<li><a href="../register/register.html">注册</a></li>
+				</ul>
+				<ul class="ul1">
+					<li class="li1">
+						<img src="images/header_box.png"  />
+						<a href="#">购物车</a>
+						<span class="span2">0</span>
+						<span class="span1"><img src="images/icon_drop.png"</span>
+						<p>购物车中无商品</p>
+					</li>
+					
+					<li>
+						<a href="#">我的订单</a>
+					</li>
+					<li class="li2">
+						<a href="#">我的鸟巢</a>
+						<span class="span1"><img src="images/icon_drop.png"</span>
+						<ul class="ul33">
+							<li>订单查询</li>
+							<li>售后服务</li>
+							<li>积分换礼</li>
+						</ul>
+					</li> 
+					<li>
+						<a href="#">钻石课堂</a>
+					</li>
+					<li class="li3">
+						<a href="#">手机官网</a>
+						<ul class="ul4">
+							<li>
+								<img src="images/code_wechat.jpg"  />
+							</li>
+							
+						</ul>
+					</li>
+				</ul>
+				
+			</div>
+		</div>
+		
+		
+		
+		<!--header部分--> 
+		<div id="header-wraper">
+			<div class="header">
+				<h2>
+					<img src="images/33.png"  />
+				</h2>
+				<!--<form id="form1">
+					<input class="input1" type="text" placeholder="戒托"/>
+					<a href="#">来店预约</a>
+					<img src="images/icon_ser.jpg" />
+				</form>	-->
+				
+			</div>	
+		</div>
+		 
+		<!--main部分-->
+		<div id="main-warper">
+			<img src="images/auth_bg_new.jpg" />
+			<div class="main">
+				<ul>
+					<li class="li1">会员登录</li>
+					<li  class="li2"><a href="#">快速注册</a></li>
+				</ul>
+				
+				<form>
+					<input type="text" class="input1" placeholder="用户名"/>
+					<br />
+					<input type="password" class="input2" placeholder="密码"/>
+					<br />
+					<input type="checkbox" class="input3"/><span>自动登录</span><a href="#">忘记密码</a>
+					<br />
+					<button id="bnt"/>登录</button>
+					<br /> 	
+				</form>	
+				
+					<ul class="ul1">
+						<li>
+							<a href="#">合作网站账号登录</a>
+						</li>
+					</ul>
+					
+					<ul class="ul2">
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+			</div>
+			
+		</div>
+		
+		
+		
+		
+		<!--尾部-->
+		<div id="bottom-wraper">
+			<div class="bottom">
+				<ul class="u1">
+					<li class="li6">
+						<a href="#">全国免费配送</a>
+					</li>
+					<li>
+						<a href="#">商品货到付款</a>
+					</li>
+					<li>
+						<a href="#">钻石以小换大</a>
+					</li>
+					<li>
+						<a href="#">钻石一钻双证</a>
+					</li>
+					<li>
+						<a href="#">15天免费退换</a>
+					</li>
+					<li class="li1">
+						<a href="#">商品终生退换</a>
+					</li>
+				</ul>
+				
+				<ul class="u2">
+					<li class="lia"><img src="images/logo1.jpg"/></li>
+					<li class="lio">
+						<dl>
+							<dh>关于我们</dh>
+							<dd><a href="#">品牌简介</a></dd>
+							<dd><a href="#">市场合作</a></dd>
+							<dd><a href="#">联系我们</a></dd>
+							<dd><a href="#">商务加盟</a></dd>
+						</dl>
+					</li>
+					<li class="lio">
+						<dl>
+							<dh>关于我们</dh>
+							<dd><a href="#">品牌简介</a></dd>
+							<dd><a href="#">市场合作</a></dd>
+							<dd><a href="#">联系我们</a></dd>
+							<dd><a href="#">商务加盟</a></dd>
+						</dl>
+					</li>
+					<li class="lio">
+						<dl>
+							<dh>关于我们</dh>
+							<dd><a href="#">品牌简介</a></dd>
+							<dd><a href="#">市场合作</a></dd>
+							<dd><a href="#">联系我们</a></dd>
+							<dd><a href="#">商务加盟</a></dd>
+						</dl>
+					</li>
+					<li class="lio">
+						<dl>
+							<dh>关于我们</dh>
+							<dd><a href="#">品牌简介</a></dd>
+							<dd><a href="#">市场合作</a></dd>
+							<dd><a href="#">联系我们</a></dd>
+							<dd><a href="#">商务加盟</a></dd>
+						</dl>
+					</li>
+					<li class="lio">
+						<dl>
+							<dh>关于我们</dh>
+							<dd><a href="#">品牌简介</a></dd>
+							<dd><a href="#">市场合作</a></dd>
+							<dd><a href="#">联系我们</a></dd>
+							<dd><a href="#">商务加盟</a></dd>
+						</dl>
+					</li>
+					<li class="lii"><img src="images/web_code.jpg"/></li>
+				</ul>
+				
+				<div class="boxa">
+					<div class="boxb">
+						<ul class="ulc">
+							<li class="li1">400-880-0051</li>
+							<li>咨询时间:09:00-21:00</li>
+						</ul>
+						<ul class="uld">
+							<li>进店有礼&nbsp;&nbsp;甜蜜不停</li>
+						</ul>
+					</div>
+				</div>
+				
+				
+				<ul class="ulf">
+					<li><a href="#">网站地图</a></li>
+					<li><a href="#">网站地图</a></li>
+					<li><a href="#">网站地图</a></li>
+					<li>沪ICP备08011593号</li>
+					<li class="li1">Copyright &copy 2002-2007 www.zbird 钻石小鸟	 All Right Reserved</li>
+				</ul>
+				<h6>上海铂利德钻石有限公司&nbsp;&nbsp;021-26011188</h6>
+				
+				<ul class="ulg">
+					<li><a href="#">南湖国旅</a></li>
+					<li><a href="#">可可礼物</a></li>
+					<li><a href="#">卷皮网</a></li>
+					<li><a href="#">加盟网</a></li>
+					<li><a href="#">京东优评</a></li>
+					<li><a href="#">免费发布信息网</a></li>
+					<li><a href="#">白银网</a></li>
+					<li><a href="#">黄金网</a></li>
+					<li><a href="#">返利网</a></li>
+					<li><a href="#">生日礼物</a></li>
+					<li><a href="#">深圳地图</a></li>
+					<li><a href="#">黑光网</a></li>
+					<li class="li2"><a href="#">优惠劵</a></li>	
+				</ul>
+				
+				<ul class="ulh">
+					<li><img src="images/fot_certi.gif"/></li>
+					<li><img src="images/fot_certi_02.jpg"/></li>
+					<li><img src="images/fot_certi_03.jpg"/></li>
+					<li><img src="images/fot_certi_04.jpg"/></li>
+					<li><img src="images/picp_bg.png"/></li>
+				</ul>
+			</div>
+		</div>
+		
+		
+		<!--固定-->
+		<div id="boxd">
+			<h1><img src="images/img.png"/></h1>
+			<ul>
+				<li><img src="images/1.gif"/></li>
+				<li><img src="images/2.jpg"/></li>
+				<li><img src="images/3.jpg"/></li>
+				<li><img src="images/4.jpg"/></li>
+				<li class="lig">
+					<img src="images/5.jpg"/>
+					<h3><img src="images/code.jpg"/></h3>
+				</li>
+			</ul>
+		</div>
+		
+		
+	</body>
+</html> 
